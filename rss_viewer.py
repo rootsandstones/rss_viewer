@@ -38,12 +38,28 @@ def add_db(rss_input):
     db.commit()
     st.write('Adding...')
 
+def get_links():
+    values = db.execute("SELECT * FROM links").fetchall()
+    links_dict = {}
+    for rows in values:
+        name = rows[0]
+        link = rows[1]
+        links_dict[name] = link
+    return links_dict
+
 st.title('Youtube RSS Viewer')
 
+#Adding links
 st.subheader('Adding new feeds')
 rss_link = st.text_input(label='Youtube RSS Link', value='https://www.youtube.com/feeds/videos.xml?channel_id=UCjOl2AUblVmg2rA_cRgZkFg')
 
 if st.button('Add RSS to library'):
     add_db(rss_link)
 
-get_rss_feed(rss_link)
+#Displaying feeds
+st.subheader('Display feeds')
+rss_dict = get_links()
+
+selection_by_name = st.selectbox('Choose feed', rss_dict.keys())
+
+#get_rss_feed(rss_link)
