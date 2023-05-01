@@ -39,6 +39,7 @@ def add_db(rss_input):
     st.write('Adding...')
 
 def get_links():
+    #Create dictionary in a format like name:link
     values = db.execute("SELECT * FROM links").fetchall()
     links_dict = {}
     for rows in values:
@@ -59,7 +60,5 @@ if st.button('Add RSS to library'):
 #Displaying feeds
 st.subheader('Display feeds')
 rss_dict = get_links()
-
 selection_by_name = st.selectbox('Choose feed', rss_dict.keys())
-
-#get_rss_feed(rss_link)
+get_rss_feed(rss_dict[selection_by_name])
