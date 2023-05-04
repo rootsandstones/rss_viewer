@@ -48,6 +48,7 @@ def get_links():
         links_dict[name] = link
     return links_dict
 
+st.set_page_config(page_title='Youtube RSS Feeds', layout='wide')
 st.title('Youtube RSS Viewer')
 
 #Adding links
