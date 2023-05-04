@@ -58,7 +58,21 @@ if st.button('Add RSS to library'):
     add_db(rss_link)
 
 #Displaying feeds
-st.subheader('Display feeds')
 rss_dict = get_links()
-selection_by_name = st.selectbox('Choose feed', rss_dict.keys())
-get_rss_feed(rss_dict[selection_by_name])
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+   st.subheader('Display feeds')
+   selection_by_name_1 = st.selectbox('Choose feed', rss_dict.keys(), key=1)
+   get_rss_feed(rss_dict[selection_by_name_1])
+
+with col2:
+   st.subheader('Display feeds')
+   selection_by_name_2 = st.selectbox('Choose feed', rss_dict.keys(), key=2)
+   get_rss_feed(rss_dict[selection_by_name_2])
+
+with col3:
+   st.subheader('Display feeds')
+   selection_by_name_3 = st.selectbox('Choose feed', rss_dict.keys(), key=3)
+   get_rss_feed(rss_dict[selection_by_name_3])
