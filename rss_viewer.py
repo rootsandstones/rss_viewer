@@ -12,11 +12,11 @@ else:
     db = sqlite3.connect('rss.db')
 
 dbpointer = db.cursor()
-dbpointer.execute("CREATE TABLE IF NOT EXISTS links (name TEXT, link TEXT)")
+dbpointer.execute("CREATE TABLE IF NOT EXISTS links (name TEXT, link TEXT, groupname TEXT)")
 
 def get_rss_feed(rss_input):
     feed = feedparser.parse(rss_input)
-    st.header(feed.feed.title)
+    #st.header(feed.feed.title)
         
     for i in range(0, 5):
         title = feed.entries[i].title
@@ -48,7 +48,7 @@ def get_links():
         links_dict[name] = link
     return links_dict
 
-st.set_page_config(page_title='Youtube RSS Feeds', layout='wide')
+st.set_page_config(page_title='Youtube RSS Feeds', layout='wide')   #Must be the first streamlit command!
 st.title('Youtube RSS Viewer')
 
 #Adding links
